@@ -3,26 +3,7 @@ var MOCK_DASHBOARD_DATA = {
 	"myFirstName": "Matthew",
 	"overallWinrate": 36,
 	"recentPlayers": ["Jon", "Jay", "Carrie", "Kyle"],
-	"recentSessions": [
-		{
-			"game": "Agricola",
-			"players": ["Matthew", "Jon", "Jay"],
-			"winner": "Jon",
-			"timeStamp": 1492022116372
-		},
-		{
-			"game": "Viticulture",
-			"players": ["Matthew", "Jon", "John", "Kyle", "Carrie"],
-			"winner": "Kyle",
-			"timeStamp": 1492022116372
-		},
-		{
-			"game": "Galaxy Trucker",
-			"players": ["Matthew", "John", "Kyle"],
-			"winner": "John",
-			"timeStamp": 1492022116372
-		}
-	]
+	"recentSessions": generateSessions(3)
 }
 
 function getDashboardInfo(callback) {
@@ -42,11 +23,11 @@ function displayDashboardInfo(data){
 		var li = "<li>" + player + "</li>";
 		$(".js-recent-players").append(li);
 	});
-	//Populate recent sessions list
-	data.recentSessions.forEach(function(session){
-		var  li = "<li>" + session.game + " Players: " + session.players.join(", ") + " Winner: " + session.winner + "</li>";
-		$(".js-recent-sessions").append(li);
-	})
+	//Populate recent sessions list using Handlebars
+	var src = $("#recent-sessions").html()
+	var template = Handlebars.compile(src);
+	var lis = template({sessions: data.recentSessions});
+	$(".js-recent-sessions").append(lis);
 }
 
 function getAndDisplayDashboardInfo(){
