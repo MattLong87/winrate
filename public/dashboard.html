@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>WinRate - My Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
 </head>
 <body>
-<p>Dashboard</p>
+<main>
+	<h1><span class = "js-username"></span> Dashboard</h1>
+	<h2>Overall WinRate: <span class = "js-winrate"></span>%</h2>
+	<h3>Recent Players</h3>
+	<ul class = "js-recent-players">
+	</ul>
+	<h3>Recent Sessions</h3>
+	<ul class = "js-recent-sessions">
+	</ul>
+	<a href = "./sessions.html">View all sessions</a>
+</main>
 
 <script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="./scripts/dashboard.js"></script>

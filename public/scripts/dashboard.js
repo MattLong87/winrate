@@ -13,13 +13,13 @@ var MOCK_DASHBOARD_DATA = {
 		{
 			"game": "Viticulture",
 			"players": ["Matthew", "Jon", "John", "Kyle", "Carrie"],
-			"Winner": "Kyle",
+			"winner": "Kyle",
 			"timeStamp": 1492022116372
 		},
 		{
 			"game": "Galaxy Trucker",
 			"players": ["Matthew", "John", "Kyle"],
-			"Winner": "John",
+			"winner": "John",
 			"timeStamp": 1492022116372
 		}
 	]
@@ -33,7 +33,20 @@ function getDashboardInfo(callback) {
 //Below this line should work with real API data
 
 function displayDashboardInfo(data){
-	$("body").append(JSON.stringify(data));
+	//Dashboard displays username
+	$(".js-username").html(data.username + "'s");
+	//User's overall winrate
+	$(".js-winrate").html(data.overallWinrate);
+	//Populate recent players list
+	data.recentPlayers.forEach(function(player){
+		var li = "<li>" + player + "</li>";
+		$(".js-recent-players").append(li);
+	});
+	//Populate recent sessions list
+	data.recentSessions.forEach(function(session){
+		var  li = "<li>" + session.game + " Players: " + session.players.join(", ") + " Winner: " + session.winner + "</li>";
+		$(".js-recent-sessions").append(li);
+	})
 }
 
 function getAndDisplayDashboardInfo(){
