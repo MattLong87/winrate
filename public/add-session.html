@@ -1,9 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>WinRate - Add a Session</title>
+	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
 </head>
 <body>
-<p>Add a session</p>
+	<h1>Add a Session</h1>
+	<form>
+		<label for="game">Game:</label>
+		<select name="game" id="game">
+			<script type="text/x-handlebars-template" id="games">
+				{{#each games}}
+					<option>{{this}}</option>
+				{{/each}}
+			</script>
+		</select>
+		<label for="players">Players:</label>
+		<select name="players" id="player1">
+			<script type="text/x-handlebars-template" id="players">
+				{{#each players}}
+					<option>{{this}}</option>
+				{{/each}}
+			</script>
+		</select>
+		<label for="winner">Winner:</label>
+		<select name="winner" id="winner">
+		</select>
+
+		<button type="submit">Submit</button>
+		<button type="reset">Reset</button>
+	</form>
+
+
+<script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+<script type="text/javascript" src="./scripts/add-session.js"></script>
 </body>
 </html>
