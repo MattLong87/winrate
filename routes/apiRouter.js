@@ -4,15 +4,26 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {User} = require('../models/models.js');
+const {User, userSchema} = require('../models/models.js');
+console.log(userSchema.methods);
 
-router.get('/dashboard-info', (req, res) => {
-	User.findOne()
+for (let method in userSchema.methods){
+	router.get("/" + method, (req, res) => {
+		User.findOne()
 		.exec()
 		.then((user) => {
-			res.send(user.dashboardInfo());
+			res.send(user[method]());
 		})
-})
+	})
+}
+
+// router.get('/dashboard-info', (req, res) => {
+// 	User.findOne()
+// 		.exec()
+// 		.then((user) => {
+// 			res.send(user.dashboardInfo());
+// 		})
+// })
 
 
 module.exports = router;

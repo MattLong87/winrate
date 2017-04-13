@@ -55,7 +55,8 @@ $("#players-input").on("change", ".players-dropdown", function(e){
 		playersArray.push(player);
 	}
 	playersArray.forEach(function(player){
-		$("#winner").append("<option>" + player + "</option>");
+		$("#winner").addOption(player);
+		//$("#winner").append("<option>" + player + "</option>");
 	});
 })
 

@@ -20,10 +20,20 @@ userSchema.methods.dashboardInfo = function(){
 		username: this.username,
 		myFirstName: this.name.firstName,
 		recentPlayers: this.players,
-		sessions: this.sessions
+		sessions: this.sessions.slice(-5, -1),
+		allGames: this.allGames
 	}
 }
 
+userSchema.virtual("allGames").get(function(){
+	return Object.keys(
+		this.sessions.reduce((uniqueNames, session) => {
+		uniqueNames[session.game] = true;
+		return uniqueNames
+		}, {})
+	)
+})
+
 const User = mongoose.model('User', userSchema);
 
-module.exports = {User};
+module.exports = {User, userSchema};

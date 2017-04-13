@@ -17,7 +17,11 @@ function displaySessions(data){
 	//Populate sessions list using Handlebars
 	var src = $("#sessions").html()
 	var template = Handlebars.compile(src);
-	var lis = template({sessions: data.sessions});
+	var lis = template({sessions: data.sessions.map((session) => {
+		session.timeStampFormatted = moment(session.timeStamp).format();
+		return session;
+		})
+	});
 	$(".js-sessions").append(lis);
 }
 
