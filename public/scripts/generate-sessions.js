@@ -8,7 +8,7 @@ function generateSessions(numSessions){
 			game: games[Math.floor(Math.random()*games.length)],
 			players: players.slice(0, Math.floor((Math.random())*4) + 2),
 			winner: players[Math.floor(Math.random()*players.length)],
-			timeStamp: 1492022116372
+			timeStamp: Date.now()
 		})
 	}
 	return sessions;
