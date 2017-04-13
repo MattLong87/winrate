@@ -15,14 +15,17 @@
 				{{/each}}
 			</script>
 		</select>
-		<label for="players">Players:</label>
-		<select name="players" id="player1">
-			<script type="text/x-handlebars-template" id="players">
-				{{#each players}}
-					<option>{{this}}</option>
-				{{/each}}
-			</script>
-		</select>
+		<section id="players-input">
+			<label for="players">Players:</label>
+			<select name="players" id="player1" class="players-dropdown">
+				<script type="text/x-handlebars-template" id="players">
+					{{#each players}}
+						<option>{{this}}</option>
+					{{/each}}
+				</script>
+			</select>
+			<button id="js-add-player">Add a Player</button>
+		</section>
 		<label for="winner">Winner:</label>
 		<select name="winner" id="winner">
 		</select>
