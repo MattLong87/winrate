@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
 	players: [String],
 	sessions: [{
 		game: {type: String},
-		players: [{String}],
+		players: [String],
 		winner: {type: String},
 		timeStamp: {type: Date, default: Date.now}
 	}]

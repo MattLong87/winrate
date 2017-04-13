@@ -28,7 +28,7 @@ function seedUser(){
 		sessions: generateSessions(10)
 	}
 
-	return User.insertOne(fakeUser);
+	return User.create(fakeUser);
 }
 
 function generateSessions(numSessions){
