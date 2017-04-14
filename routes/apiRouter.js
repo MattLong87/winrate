@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {User, userSchema} = require('../models/models.js');
-console.log(userSchema.methods);
 
 //This automatically makes a route for each
 //method on the userSchema
@@ -26,6 +25,5 @@ for (let method in userSchema.methods){
 // 			res.send(user.dashboardInfo());
 // 		})
 // })
-
 
 module.exports = router;
