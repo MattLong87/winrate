@@ -46,7 +46,6 @@ function seedUser(){
 		players: playerHistory,
 		sessions: generateSessions(20, userFirstName, playerHistory)
 	}
-
 	return User.create(fakeUser);
 }
 
@@ -74,3 +73,5 @@ function generateSessions(numSessions, userFirstName, playerHistory){
 	}
 	return sessions;
 }
+
+module.exports = {seedUser};

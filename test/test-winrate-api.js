@@ -1,10 +1,22 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const mongoose = require('mongoose');
 
 const should = chai.should();
-const {app} = require('../server');
+const {app, runServer, closeServer} = require('../server');
+const {TEST_DATABASE_URL} = require('../config');
+const {seedUser} = require('../generateMockUser');
 
 chai.use(chaiHttp);
+
+//Functions to populate test database before each test and drop it after each
+
+function tearDownDb() {
+    console.warn('Deleting database');
+    return mongoose.connection.dropDatabase();
+}
+
+
 
 describe("Root URL", function(){
 	it("Should return a 200 status and HMTL", function(){
@@ -51,23 +63,44 @@ describe("Sessions page", function(){
 	})
 })
 
-describe("Dashboard API endpoint", function(){
-	it("Should return information for the dashboard and 4 most recent sessions", function(){
-		let keys = ["username", "myFirstName", "recentPlayers", "sessions"];
-		let sessionKeys = ["game", "players", "winner", "timeStamp"];
-		return chai.request(app)
-			.get('/api/dashboardInfo')
-			.then(function(res){
-				res.should.have.status(200);
-				res.should.be.json;
-				res.body.should.be.a("object");
-				res.body.sessions.should.have.length.of(4);
-				res.body.should.have.all.keys(keys);
-				res.body.sessions.forEach(function(session){
-					session.should.be.a("object");
-					session.should.have.all.keys(sessionKeys);
-					//add checks for each session field
+describe("Winrate API resource", function(){
+	before(function() {
+    return runServer(TEST_DATABASE_URL);	
+  });
+
+  beforeEach(function() {
+    return seedUser();
+  });
+
+  afterEach(function() {
+    return tearDownDb();
+  });
+
+  after(function() {
+    return closeServer();
+  })
+
+	describe("Dashboard API endpoint", function(){
+		it("Should return information for the dashboard and 4 most recent sessions", function(){
+			let keys = ["username", "myFirstName", "recentPlayers", "sessions"];
+			let sessionKeys = ["game", "players", "winner", "timeStamp"];
+			return chai.request(app)
+				.get('/api/dashboardInfo')
+				.then(function(res){
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.should.be.a("object");
+					res.body.sessions.should.have.length.of(4);
+					res.body.should.contain.all.keys(keys);
+					res.body.sessions.forEach(function(session){
+						session.should.be.a("object");
+						session.should.contain.all.keys(sessionKeys);
+						session.game.should.be.a("string");
+						session.players.should.be.a("array");
+						session.players.should.have.length.of.at.least(2);
+						session.winner.should.be.a("string");
+					})
 				})
-			})
+		})
 	})
 })
