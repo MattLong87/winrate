@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
 		game: {type: String},
 		players: [String],
 		winner: {type: String},
-		timeStamp: {type: Date, default: Date.now}
+		timeStamp: {type: String}
 	}]
 })
 
@@ -21,10 +21,11 @@ userSchema.methods.dashboardInfo = function(){
 		myFirstName: this.name.firstName,
 		recentPlayers: this.players,
 		sessions: this.sessions.slice(-5, -1),
-		allGames: this.allGames
 	}
 }
 
+//User.allGames returns an array of all game names
+//the user has played
 userSchema.virtual("allGames").get(function(){
 	return Object.keys(
 		this.sessions.reduce((uniqueNames, session) => {

@@ -1,8 +1,12 @@
+//This script generates realistic data for one user and inserts
+//it into the database. User has 20 friends and has played 5 games
+//over 20 sessions
+
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const faker = require('faker');
-
+const moment = require('moment');
 
 const {PORT, DATABASE_URL} = require('./config');
 const {app, runServer, closeServer} = require('./server');
@@ -15,30 +19,55 @@ runServer()
 	console.log(err);
 });
 
-//to test statistics calculations later, probably
-//have to rewrite to be more realistic
+function choosePlayers(numPlayers, playerNames){
+  //copies playerNames instead of just passing reference
+  let playerOptions = playerNames.slice(0)
+	let players = [];
+	for(var i = 1; i <= numPlayers; i++){
+		let playerIndex = Math.floor(Math.random() * playerOptions.length);
+		players.push(playerOptions[playerIndex]);
+		playerOptions.splice(playerIndex, 1);
+	}
+	return players;
+}
+
 function seedUser(){
+	const userFirstName = faker.name.firstName();
+	var playerHistory = [];
+	for(let i = 1; i <= 20; i++){
+		playerHistory.push(faker.name.firstName());
+	}
 	var fakeUser = {
 		username: faker.internet.userName(),
 		name: {
-			firstName: faker.name.firstName(),
+			firstName: userFirstName,
 			lastName: faker.name.lastName(),
 		},
-		players: [faker.name.firstName(),faker.name.firstName(),faker.name.firstName()],
-		sessions: generateSessions(10)
+		players: playerHistory,
+		sessions: generateSessions(20, userFirstName, playerHistory)
 	}
 
 	return User.create(fakeUser);
 }
 
-function generateSessions(numSessions){
+let games = []
+for (let i = 1; i <= 5; i++){
+	games.push(faker.commerce.productName());
+}
+
+function generateSessions(numSessions, userFirstName, playerHistory){
 	let sessions = [];
+	let today = moment.valueOf();
 	for (let i = 1; i <= numSessions; i++){
+		//first argument generates random numPlayers [1, 5], then unshift userFirstName onto players
+		let players = choosePlayers(Math.floor(Math.random()*5) + 2, playerHistory).unshift(userFirstName);
+		let winner = players[Math.floor(Math.random() * players.length)];
+		let timeStamp = moment(today).subtract(i, 'days');
 		let session = {
-			game: faker.commerce.productName(),
-			players: [faker.name.firstName(), faker.name.firstName()],
-			winner: faker.name.firstName(),
-			timeStamp: Date.now()
+			game: games[Math.floor(Math.random() * games.length)],
+			players: players,
+			winner: winner,
+			timeStamp: timeStamp
 		}
 		sessions.push(session);
 	}

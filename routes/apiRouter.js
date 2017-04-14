@@ -7,6 +7,8 @@ const jsonParser = bodyParser.json();
 const {User, userSchema} = require('../models/models.js');
 console.log(userSchema.methods);
 
+//This automatically makes a route for each
+//method on the userSchema
 for (let method in userSchema.methods){
 	router.get("/" + method, (req, res) => {
 		User.findOne()
@@ -16,7 +18,7 @@ for (let method in userSchema.methods){
 		})
 	})
 }
-
+//Previous way of defining routes, replaced by above
 // router.get('/dashboard-info', (req, res) => {
 // 	User.findOne()
 // 		.exec()
