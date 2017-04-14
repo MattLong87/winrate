@@ -90,11 +90,36 @@ describe("Winrate API resource", function(){
 					res.should.have.status(200);
 					res.should.be.json;
 					res.body.should.be.a("object");
+					res.body.username.should.be.a("string");
+					res.body.overallWinrate.should.be.a("number");
 					res.body.sessions.should.have.length.of(4);
 					res.body.should.contain.all.keys(keys);
 					res.body.sessions.forEach(function(session){
 						session.should.be.a("object");
 						session.should.contain.all.keys(sessionKeys);
+						session.game.should.be.a("string");
+						session.players.should.be.a("array");
+						session.players.should.have.length.of.at.least(2);
+						session.winner.should.be.a("string");
+					})
+				})
+		})
+	})
+
+	describe("AllSessions API endpoint", function(){
+		it("Should return player information and all sessions", function(){
+			return chai.request(app)
+				.get('/api/allSessions')
+				.then(function(res){
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.should.be.a("object");
+					res.body.username.should.be.a("string");
+					res.body.myFirstName.should.be.a("string");
+					res.body.sessions.should.be.a("array");
+					res.body.sessions.length.should.be.at.least(1);
+					res.body.sessions.forEach(function(session){
+						session.should.be.a("object");
 						session.game.should.be.a("string");
 						session.players.should.be.a("array");
 						session.players.should.have.length.of.at.least(2);
