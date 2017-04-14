@@ -57,14 +57,13 @@ for (let i = 1; i <= 5; i++){
 
 function generateSessions(numSessions, userFirstName, playerHistory){
 	let sessions = [];
-	let today = moment.valueOf();
 	for (let i = 1; i <= numSessions; i++){
 		//first argument generates random numPlayers [1, 5]
 		let players = choosePlayers(Math.floor(Math.random()*5) + 2, playerHistory);
 		//then unshift userFirstName onto players
 		players.unshift(userFirstName);
 		let winner = players[Math.floor(Math.random() * players.length)];
-		let timeStamp = moment(today).subtract(i, 'days');
+		let timeStamp = moment().subtract(i, 'days');
 		let session = {
 			game: games[Math.floor(Math.random() * games.length)],
 			players: players,
