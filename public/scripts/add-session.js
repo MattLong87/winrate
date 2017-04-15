@@ -1,7 +1,7 @@
 var MOCK_HISTORY_DATA = {
 	"username": "MattLong87",
-	"games": ["Agricola", "Puerto Rico", "Ticket to Ride"],
-	"players": ["Matthew", "Jon", "Steven", "Carrie"]
+	"allGames": ["Agricola", "Puerto Rico", "Ticket to Ride"],
+	"allPlayers": ["Matthew", "Jon", "Steven", "Carrie"]
 }
 
 function getHistory(callback) {

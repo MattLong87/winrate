@@ -26,10 +26,18 @@ userSchema.methods.dashboardInfo = function(){
 }
 
 userSchema.methods.allSessions = function(){
-	return{
+	return {
 		username: this.username,
 		myFirstName: this.name.firstName,
 		sessions: this.sessions
+	}
+}
+
+userSchema.methods.history = function(){
+	return {
+		username: this.username,
+		allGames: this.allGames,
+		allPlayers: this.allPlayers
 	}
 }
 
@@ -49,8 +57,19 @@ userSchema.virtual("overallWinrate").get(function(){
 userSchema.virtual("allGames").get(function(){
 	return Object.keys(
 		this.sessions.reduce((uniqueNames, session) => {
-		uniqueNames[session.game] = true;
-		return uniqueNames
+			uniqueNames[session.game] = true;
+			return uniqueNames
+		}, {})
+	)
+})
+
+userSchema.virtual("allPlayers").get(function(){
+	return Object.keys(
+		this.sessions.reduce((uniquePlayers, session) => {
+			session.players.forEach((player) => {
+				uniquePlayers[player] = true;
+			})
+			return uniquePlayers
 		}, {})
 	)
 })

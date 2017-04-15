@@ -10,7 +10,7 @@
 		<label for="game">Game:</label>
 		<select name="game" id="game">
 			<script type="text/x-handlebars-template" id="games">
-				{{#each games}}
+				{{#each allGames}}
 					<option>{{this}}</option>
 				{{/each}}
 			</script>
@@ -19,7 +19,7 @@
 			<label for="players">Players:</label>
 			<select name="players" id="player1" class="players-dropdown">
 				<script type="text/x-handlebars-template" id="players">
-					{{#each players}}
+					{{#each allPlayers}}
 						<option>{{this}}</option>
 					{{/each}}
 				</script>
