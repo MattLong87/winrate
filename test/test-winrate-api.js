@@ -6,6 +6,7 @@ const should = chai.should();
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 const {seedUser} = require('../generateMockUser');
+const {User} = require('../models/models');
 
 chai.use(chaiHttp);
 
@@ -153,6 +154,25 @@ describe("Winrate API resource", function(){
 					res.body.username.should.be.a("string");
 					res.body.allGames.should.be.a("array");
 					res.body.allPlayers.should.be.a("array");
+				})
+		})
+	})
+
+	describe("Delete session endpoint", function(){
+		it("Should delete a session provided with the sessionID", function(){
+			let testUserId = testUser._id;
+			let testSessionId = testUser.sessions[0]._id;
+			return chai.request(app)
+				.delete(`/api/users/${testUserId}/sessions/${testSessionId}`)
+				.then(function(res){
+					res.should.have.status(204);
+					return User.findById(testUserId)
+					.exec()
+					.then(function(user){
+						user.sessions.forEach(function(session){
+							session._id.should.not.equal(testSessionId);
+						})
+					})
 				})
 		})
 	})
