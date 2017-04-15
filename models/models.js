@@ -21,7 +21,7 @@ userSchema.methods.dashboardInfo = function(){
 		myFirstName: this.name.firstName,
 		overallWinrate: this.overallWinrate,
 		recentPlayers: this.players,
-		sessions: this.sessions.slice(-5, -1),
+		recentSessions: this.sessions.slice(-4).reverse(),
 	}
 }
 
