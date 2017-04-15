@@ -6,6 +6,8 @@ const jsonParser = bodyParser.json();
 
 const {User, userSchema} = require('../models/models.js');
 
+router.use(jsonParser);
+
 router.get("/", (req, res) => {
 	User.findOne()
 	.exec()

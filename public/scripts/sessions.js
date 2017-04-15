@@ -5,8 +5,11 @@ var MOCK_SESSIONS_DATA = {
 }
 
 function getSessions(callback) {
-	setTimeout(function(){
-		callback(MOCK_SESSIONS_DATA)}, 100);
+	$.getJSON("http://localhost:8080/api/allSessions", function(data){
+		callback(data);
+	});
+	// setTimeout(function(){
+	// 	callback(MOCK_SESSIONS_DATA)}, 100);
 };
 
 //Below this line should work with real API data
