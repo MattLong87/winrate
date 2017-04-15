@@ -128,4 +128,19 @@ describe("Winrate API resource", function(){
 				})
 		})
 	})
+
+	describe("History API endpoint", function(){
+		it("Should return player's games played and unique names in all sessions", function(){
+			return chai.request(app)
+				.get('/api/history')
+				.then(function(res){
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.should.be.a("object");
+					res.body.username.should.be.a("string");
+					res.body.allGames.should.be.a("array");
+					res.body.allPlayers.should.be.a("array");
+				})
+		})
+	})
 })
