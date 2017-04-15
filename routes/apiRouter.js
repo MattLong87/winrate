@@ -33,7 +33,6 @@ router.get("/", (req, res) => {
 //method on the userSchema
 for (let method in userSchema.methods){
 	router.get("/" + method, (req, res) => {
-		console.log(req.headers);
 		User.findOne()
 		.exec()
 		.then((user) => {
@@ -50,6 +49,7 @@ for (let method in userSchema.methods){
 // 		})
 // })
 
+//Route to create a new session for user with :id
 router.post("/users/:id/sessions", (req, res) => {
 	//should do some validation on session fields and return helpful errors
 	let newSession = {};
@@ -61,10 +61,16 @@ router.post("/users/:id/sessions", (req, res) => {
 	User.findByIdAndUpdate(req.params.id, {$push: {sessions: newSession}}, {new:true})
 	.exec()
 	.then((user) => {
-		console.log(user);
 		//sends back the session that was just created
 		res.status(201).json(user.sessions.reverse()[0]);
 		})
+})
+
+//Route to delete session with id :sessionId for user with :id
+router.delete("/users/:id/sessions/:sessionId", (req, res) => {
+	User.findByIdAndUpdate(req.params.id, {$pull: {sessions: {_id: req.params.sessionId}}})
+	.exec()
+	.then(() => res.status(204).end())
 })
 
 

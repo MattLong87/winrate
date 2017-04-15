@@ -65,6 +65,7 @@ describe("Sessions page", function(){
 
 describe("Winrate API resource", function(){
 	before(function() {
+	let testUser;
     return runServer(TEST_DATABASE_URL);	
   });
 
@@ -84,13 +85,23 @@ describe("Winrate API resource", function(){
 		it("Should return information for the dashboard and 4 most recent sessions", function(){
 			let keys = ["username", "myFirstName", "recentPlayers", "recentSessions"];
 			let sessionKeys = ["game", "players", "winner", "timeStamp"];
-			console.log("created");
-			console.log(testUser);
+			let expected = {
+				username: testUser.username,
+				myFirstName: testUser.name.firstName,
+				overallWinrate: testUser.overallWinrate,
+				recentPlayers: testUser.players,
+				recentSessions: testUser.sessions.slice(-4).reverse(),
+			}
 			return chai.request(app)
 				.get('/api/dashboardInfo')
 				.then(function(res){
+					console.log("RES.BODY");
+					console.log(res.body);
+					console.log("EXPECTED");
+					console.log(expected)
 					res.should.have.status(200);
 					res.should.be.json;
+					//res.body.should.deep.equal(expected);
 					res.body.should.be.a("object");
 					res.body.username.should.be.a("string");
 					res.body.overallWinrate.should.be.a("number");
