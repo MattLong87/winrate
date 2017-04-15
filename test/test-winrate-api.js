@@ -69,7 +69,7 @@ describe("Winrate API resource", function(){
   });
 
   beforeEach(function() {
-    return seedUser();
+    return seedUser().then(user => {testUser = user;});
   });
 
   afterEach(function() {
@@ -82,8 +82,10 @@ describe("Winrate API resource", function(){
 
 	describe("Dashboard API endpoint", function(){
 		it("Should return information for the dashboard and 4 most recent sessions", function(){
-			let keys = ["username", "myFirstName", "recentPlayers", "sessions"];
+			let keys = ["username", "myFirstName", "recentPlayers", "recentSessions"];
 			let sessionKeys = ["game", "players", "winner", "timeStamp"];
+			console.log("created");
+			console.log(testUser);
 			return chai.request(app)
 				.get('/api/dashboardInfo')
 				.then(function(res){
@@ -92,9 +94,9 @@ describe("Winrate API resource", function(){
 					res.body.should.be.a("object");
 					res.body.username.should.be.a("string");
 					res.body.overallWinrate.should.be.a("number");
-					res.body.sessions.should.have.length.of(4);
+					res.body.recentSessions.should.have.length.of(4);
 					res.body.should.contain.all.keys(keys);
-					res.body.sessions.forEach(function(session){
+					res.body.recentSessions.forEach(function(session){
 						session.should.be.a("object");
 						session.should.contain.all.keys(sessionKeys);
 						session.game.should.be.a("string");

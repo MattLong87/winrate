@@ -32,4 +32,11 @@ function getAndDisplaySessions(){
 	getSessions(displaySessions);
 }
 
+$("body").on("click", ".js-delete-session", function(e){
+	e.preventDefault();
+	//$.ajax({})
+	//put the remove in the callback in case it fails
+	$(this).parent().remove();
+})
+
 getAndDisplaySessions();
