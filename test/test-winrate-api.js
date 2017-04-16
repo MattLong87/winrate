@@ -158,8 +158,30 @@ describe("Winrate API resource", function(){
 		})
 	})
 
+	describe("Post session endpoint", function(){
+		it("Should create a new session for user", function(){
+			let testSession = {
+				"game": "testGame",
+				"players": ["Player1", "Player2", "Player3"],
+				"winner": "Player2"
+			}
+			return chai.request(app)
+				.post(`/api/users/${testUser.Id}/sessions`)
+				.send(testSession)
+				then(function(res){
+					res.should.have.status(201);
+					res.body.should.be.json;
+					res.body.game.should.equal(testSession.game);
+					res.body.players.should.equal(testSession.players);
+					res.body.winner.should.equal(testSession.winner);
+				})
+		})
+	})
+
 	describe("Delete session endpoint", function(){
 		it("Should delete a session provided with the sessionID", function(){
+			//Deletes the first session from the test user, then looks up that user
+			//and makes sure no session with that ID exists
 			let testUserId = testUser._id;
 			let testSessionId = testUser.sessions[0]._id;
 			return chai.request(app)
