@@ -71,8 +71,8 @@ describe("Winrate API resource", function(){
   });
 
   beforeEach(function() {
-    return seedUser().then(user => {testUser = user;});
-  });
+    return seedUser().then(user => testUser = user)
+    });
 
   afterEach(function() {
     return tearDownDb();
@@ -96,10 +96,10 @@ describe("Winrate API resource", function(){
 			return chai.request(app)
 				.get('/api/dashboardInfo')
 				.then(function(res){
-					console.log("RES.BODY");
-					console.log(res.body);
-					console.log("EXPECTED");
-					console.log(expected)
+					// console.log("RES.BODY");
+					// console.log(res.body);
+					// console.log("EXPECTED");
+					// console.log(expected)
 					res.should.have.status(200);
 					res.should.be.json;
 					//res.body.should.deep.equal(expected);
@@ -166,9 +166,10 @@ describe("Winrate API resource", function(){
 				"winner": "Player2"
 			}
 			return chai.request(app)
-				.post(`/api/users/${testUser.Id}/sessions`)
+				.post(`/api/users/${testUser._id}/sessions`)
 				.send(testSession)
-				then(function(res){
+				.then(function(res){
+					console.log(res.body);
 					res.should.have.status(201);
 					res.body.should.be.json;
 					res.body.game.should.equal(testSession.game);
