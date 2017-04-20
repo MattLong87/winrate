@@ -1,9 +1,3 @@
-var MOCK_HISTORY_DATA = {
-	"username": "MattLong87",
-	"allGames": ["Agricola", "Puerto Rico", "Ticket to Ride"],
-	"allPlayers": ["Matthew", "Jon", "Steven", "Carrie"]
-}
-
 function getHistory(callback) {
 	let settings = {
 		url: "http://localhost:8080/api/history",
@@ -13,8 +7,6 @@ function getHistory(callback) {
 	}
 	$.ajax(settings);
 };
-
-//Below this line should work with real API data
 
 //global variable to store API response to add more players
 var data;

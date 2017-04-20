@@ -1,9 +1,3 @@
-var MOCK_SESSIONS_DATA = {
-	"username": "MattLong87",
-	"myFirstName": "Matthew",
-	"sessions": generateSessions(50)
-}
-
 function getSessions(callback) {
 	let settings = {
 		url: "http://localhost:8080/api/allSessions",
@@ -15,8 +9,6 @@ function getSessions(callback) {
 };
 
 var id;
-
-//Below this line should work with real API data
 
 function displaySessions(data){
 	id = data.id;

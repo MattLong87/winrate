@@ -1,11 +1,3 @@
-var MOCK_DASHBOARD_DATA = {
-	"username": "MattLong87",
-	"myFirstName": "Matthew",
-	"overallWinrate": 36,
-	"recentPlayers": ["Jon", "Jay", "Carrie", "Kyle"],
-	"recentSessions": generateSessions(3)
-}
-
 function getDashboardInfo(callback) {
 	let settings = {
 		url: "http://localhost:8080/api/dashboardInfo",
@@ -15,8 +7,6 @@ function getDashboardInfo(callback) {
 	}
 	$.ajax(settings);
 };
-
-//Below this line should work with real API data
 
 function displayDashboardInfo(data){
 	//Dashboard displays username
