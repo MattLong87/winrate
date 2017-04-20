@@ -29,7 +29,8 @@ userSchema.methods.allSessions = function(){
 	return {
 		username: this.username,
 		myFirstName: this.name.firstName,
-		sessions: this.sessions.reverse()
+		sessions: this.sessions.reverse(),
+		id: this._id
 	}
 }
 

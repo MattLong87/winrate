@@ -5,16 +5,21 @@ var MOCK_SESSIONS_DATA = {
 }
 
 function getSessions(callback) {
-	$.getJSON("http://localhost:8080/api/allSessions", function(data){
-		callback(data);
-	});
-	// setTimeout(function(){
-	// 	callback(MOCK_SESSIONS_DATA)}, 100);
+	let settings = {
+		url: "http://localhost:8080/api/allSessions",
+		dataType: "json",
+		method: "GET",
+		success: function(data) {callback(data)}
+	}
+	$.ajax(settings);
 };
+
+var id;
 
 //Below this line should work with real API data
 
 function displaySessions(data){
+	id = data.id;
 	//Displays username
 	$(".js-username").html(data.username + "'s");
 	//Populate sessions list using Handlebars
@@ -34,9 +39,13 @@ function getAndDisplaySessions(){
 
 $("body").on("click", ".js-delete-session", function(e){
 	e.preventDefault();
-	//$.ajax({})
-	//put the remove in the callback in case it fails
-	$(this).parent().remove();
+	// $.ajax({
+	// 	url: "http://localhost:8080/api/users/" + id + "/sessions/" + ???,
+	// 	method: "DELETE",
+	// 	success: function(){
+	// 		$(this).parent().remove();
+	// 	}
+	// });
 })
 
 getAndDisplaySessions();
