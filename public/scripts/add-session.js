@@ -72,11 +72,13 @@ $("#players-input").on("change", ".players-dropdown", function(e){
 //Event listener for form submission
 $("#js-add-session").on("submit", function(event){
 	event.preventDefault();
-	var newSession = {
-		game: $("#game").val(),
-		players: playersArray,
-		winner: $("#winner").val()
-	};
+	// var newSession = {
+	// 	game: $("#game").val(),
+	// 	players: playersArray,
+	// 	winner: $("#winner").val()
+	// };
+	var newSession = $("#js-add-session").serialize();
+	console.log($("#js-add-session").serialize())
 	$.ajax({
 		url: "http://localhost:8080/api/users/" + data.id + "/sessions",
 		method: "POST",

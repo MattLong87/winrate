@@ -51,19 +51,19 @@ for (let method in userSchema.methods){
 
 //Route to create a new session for user with :id
 router.post("/users/:id/sessions", (req, res) => {
-	//should do some validation on session fields and return helpful errors
 	let newSession = {};
 	newSession.game = req.body.game;
 	newSession.players = req.body.players;
 	newSession.winner = req.body.winner;
 	newSession.timeStamp = Date.now().toString();
 
-	User.findByIdAndUpdate(req.params.id, {$push: {sessions: newSession}}, {new:true})
-	.exec()
-	.then((user) => {
-		//sends back the session that was just created
-		res.status(201).json(user.sessions.reverse()[0]);
-		})
+	console.log(newSession);
+	// User.findByIdAndUpdate(req.params.id, {$push: {sessions: newSession}}, {new:true})
+	// .exec()
+	// .then((user) => {
+	// 	//sends back the session that was just created
+	// 	res.status(201).json(user.sessions.reverse()[0]);
+	// 	})
 })
 
 //Route to delete session with id :sessionId for user with :id
