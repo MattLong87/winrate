@@ -21,11 +21,7 @@ var data;
 
 function populateForms(_data){
 	data = _data;
-	//Populate games list using Handlebars
-	// var src = $("#games").html()
-	// var template = Handlebars.compile(src);
-	// var gameOptions = template(data);
-	// $("#game").append(gameOptions);
+	//Populate games list using typeahead
 	$('#js-select-game').typeahead({
 		hint: true,
 		highlight: true,
@@ -36,13 +32,7 @@ function populateForms(_data){
 		source: substringMatcher(data.allGames)
 	});
 
-	//Populate players list using Handlebars
-	//Could refactor by making a function for this, duplicated in
-	//event listener below
-	// var src = $("#players").html();
-	// var template = Handlebars.compile(src);
-	// var playerOptions = template(data);
-	// $("#player1").append(playerOptions);
+	//Populate players list using typeahead
 	$('#players-input .typeahead').typeahead({
   		hint: true,
   		highlight: true,
@@ -54,38 +44,18 @@ function populateForms(_data){
 	});
 }
 
-//variable to count players
-var players = 1;
-
-//event listener for "add player" button, adds new dropdown box
-// $("#js-add-player").click(function(event){
-// 	event.preventDefault();
-// 	players++;
-// 	var dropDown = '<select name="players" id="player' + players +'" class = "players-dropdown"></select>';
-// 	var src = $("#players").html();
-// 	var template = Handlebars.compile(src);
-// 	var playerOptions = template(data);
-// 	$("#players-input").append(dropDown);
-// 	$("#player" + players).append(playerOptions);
-// })
-
 //need playersArray global to access for form submission
-var playersArray;
+var playersArray = [];
 
 //update "Winner" options when a new player is added
-// $("#players-input").on("change", ".players-dropdown", function(e){
-// 	$("#winner").html("");
-// 	playersArray = [];
-// 	for(var i = 1; i <= players; i++){
-// 		var player = $("#player" + i).val();
-// 		playersArray.push(player);
-// 	}
-// 	playersArray.forEach(function(player){
-// 		//addOption is a custom jQuery plugin:
-// 		//$("#winner").append("<option>" + player + "</option>");
-// 		$("#winner").addOption(player);
-// 	});
-// })
+function updateWinners(){
+	$("#winner").html("");
+	playersArray.forEach(function(player){
+		//addOption is a custom jQuery plugin:
+		//$("#winner").append("<option>" + player + "</option>");
+		$("#winner").addOption(player);
+	});
+}
 
 //prevent form from being submitted when pressing enter
 $("#js-add-session").on("keyup keypress", function(e){
@@ -96,17 +66,36 @@ $("#js-add-session").on("keyup keypress", function(e){
 	}
 })
 
+//Event listener when pressing enter on player input
 $("#js-add-player").keypress(function(event){
 	if (event.which === 13){
 		//have to use this .tt-input class, apparent bug in typeahead
 		var newPlayer = $("#players-input .tt-input").typeahead("val");
-		$("#js-players-added").append(newPlayer + " ");
+		playersArray.push(newPlayer);
+		updateWinners();
+		$("#js-players-added").append("<span class = 'addedPlayer'>" + newPlayer + "</span>");
 		//add a hidden input with the player's name
-		var hiddenInput = "<input class = 'player' type = 'text' value = " + newPlayer +" name = 'player'>";
+		//instead of these hidden inputs, could use our playersArray variable
+		var hiddenInput = "<input class = 'player " + newPlayer + "' type = 'text' value = " + newPlayer +" name = 'player'>";
 		$("#hidden-inputs").append(hiddenInput);
 		//clears out text box after entering
 		$("#players-input .typeahead").typeahead('val', '');
 	}
+})
+
+//Event listener (with delegation) for clicking player added to remove
+$("#js-players-added").on("click", ".addedPlayer", function(event){
+	var removedName = $(this).text();
+	//remove name from playersArray and update winners list
+	var removedPlayerIndex = playersArray.indexOf(removedName);
+	if (removedPlayerIndex > -1){
+		playersArray.splice(removedPlayerIndex, 1);
+	}
+	updateWinners();
+	//remove hidden input with player's name
+	$("." + removedName).remove();
+	//remove from players added section
+	$(this).remove();
 })
 
 //Event listener for form submission
