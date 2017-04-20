@@ -2,24 +2,36 @@
 <html>
 <head>
 	<title>WinRate - My Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/winrate.css">
+	<link rel="stylesheet" type="text/css" href="./css/dashboard.css">
+	<link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
 </head>
 <body>
+<header>
+<img src = "./images/winrate-logo.png" class = "header-logo" alt = "WinRate">
+</header>
 <main>
 	<h1><span class = "js-username"></span> Dashboard</h1>
-	<h2>Overall WinRate: <span class = "js-winrate"></span>%</h2>
-	<h3>Recent Players</h3>
-	<ul class = "js-recent-players">
-	</ul>
-	<h3>Recent Sessions</h3>
-	<ul class = "js-recent-sessions">
-		<script type="text/x-handlebars-template" id="recent-sessions">
-		{{#each sessions}}
-			<li>{{game}} Players: {{players}} Winner: {{winner}}</li>
-		{{/each}}
-		</script>
-	</ul>
-	<a href = "./sessions.html">View all sessions</a>
+	<div class = "recent-players">
+		<h3>Recent Players</h3>
+		<ul class = "js-recent-players">
+		</ul>
+	</div>
+	<div class = "overall-winrate">
+		<h2>Overall WinRate: </h2><div class = "winrate-percent"><span class = "js-winrate"></span>%</div>
+	</div>
+	<div class = "recent-sessions">
+		<h3>Recent Sessions</h3>
+		<ul class = "js-recent-sessions">
+			<script type="text/x-handlebars-template" id="recent-sessions">
+			{{#each sessions}}
+				<li><span class = "game">{{game}}</span> Players: {{players}} Winner: {{winner}}</li>
+			{{/each}}
+			</script>
+		</ul>
+		<a href = "./sessions.html">View all sessions</a>
+	</div>
 </main>
 
 
