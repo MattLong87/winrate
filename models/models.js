@@ -38,7 +38,8 @@ userSchema.methods.history = function(){
 	return {
 		username: this.username,
 		allGames: this.allGames,
-		allPlayers: this.allPlayers
+		allPlayers: this.allPlayers,
+		id: this._id
 	}
 }
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Add a Session</h1>
-	<form>
+	<form id = "js-add-session">
 		<label for="game">Game:</label>
 		<select name="game" id="game">
 			<script type="text/x-handlebars-template" id="games">
@@ -33,6 +33,11 @@
 		<button type="submit">Submit</button>
 		<button type="reset">Reset</button>
 	</form>
+	<section class = "js-session-added">
+		<span class = "js-game"></span>
+		<span class = "js-players"></span>
+		<span class = "js-winner"></span>
+	</section>
 
 
 <script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>

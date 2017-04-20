@@ -5,8 +5,13 @@ var MOCK_HISTORY_DATA = {
 }
 
 function getHistory(callback) {
-	setTimeout(function(){
-		callback(MOCK_HISTORY_DATA)}, 100);
+	let settings = {
+		url: "http://localhost:8080/api/history",
+		dataType: "json",
+		method: "GET",
+		success: function(data) {callback(data)}
+	}
+	$.ajax(settings);
 };
 
 //Below this line should work with real API data
@@ -46,19 +51,49 @@ $("#js-add-player").click(function(event){
 	$("#player" + players).append(playerOptions);
 })
 
+//need playersArray global to access for form submission
+var playersArray;
+
 //update "Winner" options when a new player is added
 $("#players-input").on("change", ".players-dropdown", function(e){
 	$("#winner").html("");
-	var playersArray = [];
+	playersArray = [];
 	for(var i = 1; i <= players; i++){
 		var player = $("#player" + i).val();
 		playersArray.push(player);
 	}
 	playersArray.forEach(function(player){
-		$("#winner").addOption(player);
+		//addOption is a custom jQuery plugin:
 		//$("#winner").append("<option>" + player + "</option>");
+		$("#winner").addOption(player);
 	});
 })
+
+//Event listener for form submission
+$("#js-add-session").on("submit", function(event){
+	event.preventDefault();
+	var newSession = {
+		game: $("#game").val(),
+		players: playersArray,
+		winner: $("#winner").val()
+	};
+	$.ajax({
+		url: "http://localhost:8080/api/users/" + data.id + "/sessions",
+		method: "POST",
+		dataType: "json",
+        contentType: "application/json",
+		data: newSession,
+		success: function(data){
+			sessionAddSuccess(data);
+		}
+	});
+})
+
+function sessionAddSuccess(data){
+	$(".js-game").html(data.game);
+	$(".js-players").html(data.players.join(", "));
+	$(".js-winner").html(data.winner);
+}
 
 function getAndPopulateForms(){
 	getHistory(populateForms);
