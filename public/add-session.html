@@ -23,15 +23,16 @@
 		<section id="players-input">
 				<label for="players">Players:</label>
 				<input class = "typeahead" id = "js-add-player" type = "text" placeholder = "Add a Player">
-				<section id = "js-players-added"></section>
+				<section id = "js-players-added" class = "players-added"></section>
 			</section>
 		</div>
 		<section id = "hidden-inputs"></section>
-		<label for="winner">Winner:</label>
-		<select name="winner" id="winner">
-		</select>
-		<button type="submit">Submit</button>
-		<button type="reset">Reset</button>
+		<div class = "winner-selection">
+			<label for="winner">Winner:</label>
+			<select name="winner" id="winner">
+			</select>
+			</div>
+		<button type="submit" id="submit">Submit</button>
 	</form>
 	<section class = "js-session-added">
 		<span class = "js-game"></span>
@@ -39,8 +40,8 @@
 		<span class = "js-winner"></span>
 	</section>
 
-<a href = "./dashboard.html">Dashboard</a>
-<a href = "./sessions.html">All Sessions</a>
+<a href = "./dashboard.html"><button class = "nav-button dashboard">Dashboard</button></a>
+<a href = "./sessions.html"><button class = "nav-button all-sessions">All Sessions</button></a>
 </main>
 <script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="./scripts/addOption.jquery.js"></script>

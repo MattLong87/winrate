@@ -36,7 +36,7 @@ function populateForms(_data){
 	});
 }
 
-//need playersArray global to access for form submission
+//need playersArray global to update winners
 var playersArray = [];
 
 //update "Winner" options when a new player is added
@@ -118,7 +118,7 @@ $("#js-add-session").on("submit", function(event){
 })
 
 function toObject(str){
-	str = decodeURIComponent(str);
+  str = decodeURIComponent(str);
   var split = str.split("&");
   var object = {}
   split.forEach(function(keyValue){
