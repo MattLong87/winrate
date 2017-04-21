@@ -1,6 +1,6 @@
 function getHistory(callback) {
 	let settings = {
-		url: "./api/history",
+		url: "/api/history",
 		dataType: "json",
 		method: "GET",
 		success: function(data) {callback(data)}
