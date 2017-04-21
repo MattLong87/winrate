@@ -3,39 +3,40 @@
 <head>
 	<title>WinRate - Add a Session</title>
 	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/add-session.css">
 </head>
 <body>
 	<h1>Add a Session</h1>
-	<form>
-		<label for="game">Game:</label>
-		<select name="game" id="game">
-			<script type="text/x-handlebars-template" id="games">
-				{{#each games}}
-					<option>{{this}}</option>
-				{{/each}}
-			</script>
-		</select>
+	<form id = "js-add-session">
+		<div class = "game-name">
+			<label for="game">Game:</label>
+			<input class = "typeahead" id = "js-select-game" type = "text" name = "game" placeholder = "Game Name">
+		</div>
+		<div class = "players-input">
 		<section id="players-input">
-			<label for="players">Players:</label>
-			<select name="players" id="player1" class="players-dropdown">
-				<script type="text/x-handlebars-template" id="players">
-					{{#each players}}
-						<option>{{this}}</option>
-					{{/each}}
-				</script>
-			</select>
-			<button id="js-add-player">Add a Player</button>
-		</section>
+				<label for="players">Players:</label>
+				<input class = "typeahead" id = "js-add-player" type = "text" placeholder = "Add a Player">
+				<section id = "js-players-added"></section>
+			</section>
+		</div>
+		<section id = "hidden-inputs"></section>
 		<label for="winner">Winner:</label>
 		<select name="winner" id="winner">
 		</select>
-
 		<button type="submit">Submit</button>
 		<button type="reset">Reset</button>
 	</form>
+	<section class = "js-session-added">
+		<span class = "js-game"></span>
+		<span class = "js-players"></span>
+		<span class = "js-winner"></span>
+	</section>
 
-
+<a href = "./dashboard.html">Dashboard</a>
+<a href = "./sessions.html">All Sessions</a>
 <script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./scripts/addOption.jquery.js"></script>
+<script type="text/javascript" src="./scripts/typeahead.jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
 <script type="text/javascript" src="./scripts/add-session.js"></script>
 </body>

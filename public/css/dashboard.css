@@ -1,0 +1,45 @@
+main {
+  margin: 50px auto;
+  /*border: 1px solid black;*/
+  line-height: 1.5; }
+
+h1 {
+  font-size: 46pt;
+  text-align: center;
+  margin-bottom: 50px; }
+
+.overall-winrate {
+  text-align: center;
+}
+
+h2, h3 {
+  font-size: 30pt;
+  letter-spacing: 2px;
+}
+
+.winrate-percent {
+  font-size: 40pt;
+  display: inline-block;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 30px;
+  list-style: disc;
+  font-size: 16pt;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.recent-sessions {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.game {
+  font-size: 20pt;
+  display: inline-block;
+  width: 100%;
+}

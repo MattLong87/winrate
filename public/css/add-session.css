@@ -1,0 +1,19 @@
+*{
+	box-sizing: border-box;
+}
+
+#hidden-inputs{
+	display: none;
+}
+
+body{
+	text-align: center
+}
+
+.game-name{
+	margin-bottom: 100px;
+}
+
+.players-input{
+	margin-bottom: 100px;
+}
