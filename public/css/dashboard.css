@@ -1,59 +1,45 @@
-main{
-	max-width: 800px;
-	margin: 50px auto;
-	/*border: 1px solid black;*/
-	color: white;
+main {
+  margin: 50px auto;
+  /*border: 1px solid black;*/
+  line-height: 1.5; }
+
+h1 {
+  font-size: 46pt;
+  text-align: center;
+  margin-bottom: 50px; }
+
+.overall-winrate {
+  text-align: center;
 }
 
-body{
-	background-color: #0076B2;
+h2, h3 {
+  font-size: 30pt;
+  letter-spacing: 2px;
 }
 
-h1{
-	font-size: 46pt;
-	text-align: center;
-	margin-bottom: 50px;
+.winrate-percent {
+  font-size: 40pt;
+  display: inline-block;
 }
 
-.recent-players{
-	width: 60%;
-	display: inline-block;
+ul {
+  margin-top: 10px;
+  padding-left: 30px;
+  list-style: disc;
+  font-size: 16pt;
 }
 
-.overall-winrate{
-	width: 39%;
-	display: inline-block;
-	text-align: center;
+li {
+  margin-bottom: 5px;
 }
 
-h2, h3{
-	font-size: 30pt;
-	letter-spacing: 2px;
+.recent-sessions {
+  margin-top: 100px;
+  width: 100%;
 }
 
-.winrate-percent{
-	font-size: 40pt;
-	display: inline-block;
-}
-
-ul{
-	margin-top: 10px;
-	padding-left: 30px;
-	list-style: disc;
-	font-size: 16pt;
-}
-
-li{
-	margin-bottom: 5px;
-}
-
-.recent-sessions{
-	margin-top: 100px;
-	width: 100%;
-}
-
-.game{
-	font-size: 20pt;
-	display: inline-block;
-	width: 100%;
+.game {
+  font-size: 20pt;
+  display: inline-block;
+  width: 100%;
 }
