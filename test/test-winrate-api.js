@@ -87,35 +87,39 @@ describe("Winrate API resource", function(){
 			let keys = ["username", "myFirstName", "recentPlayers", "recentSessions"];
 			let sessionKeys = ["game", "players", "winner", "timeStamp"];
 			let expected = {
-				username: testUser.username,
-				myFirstName: testUser.name.firstName,
-				overallWinrate: testUser.overallWinrate,
-				recentPlayers: testUser.players,
-				recentSessions: testUser.sessions.slice(-4).reverse(),
+				// username: testUser.username,
+				// myFirstName: testUser.name.firstName,
+				// overallWinrate: testUser.overallWinrate,
+				// recentPlayers: testUser.players.slice(-5).reverse(),
+				//something weird is happening where the session id is not a string
+				recentSessions: testUser.sessions.slice(-4).reverse().map((session) => {
+					session._id = session._id.toString();
+					return session;
+				}),
 			}
 			return chai.request(app)
 				.get('/api/dashboardInfo')
 				.then(function(res){
-					// console.log("RES.BODY");
-					// console.log(res.body);
-					// console.log("EXPECTED");
-					// console.log(expected)
+					console.log("RES.BODY");
+					console.log(res.body);
+					console.log("EXPECTED");
+					console.log(expected)
 					res.should.have.status(200);
 					res.should.be.json;
-					//res.body.should.deep.equal(expected);
+					res.body.should.eql(expected);
 					res.body.should.be.a("object");
-					res.body.username.should.be.a("string");
-					res.body.overallWinrate.should.be.a("number");
-					res.body.recentSessions.should.have.length.of(4);
-					res.body.should.contain.all.keys(keys);
-					res.body.recentSessions.forEach(function(session){
-						session.should.be.a("object");
-						session.should.contain.all.keys(sessionKeys);
-						session.game.should.be.a("string");
-						session.players.should.be.a("array");
-						session.players.should.have.length.of.at.least(2);
-						session.winner.should.be.a("string");
-					})
+					// res.body.username.should.be.a("string");
+					// res.body.overallWinrate.should.be.a("number");
+					// res.body.recentSessions.should.have.length.of(4);
+					// res.body.should.contain.all.keys(keys);
+					// res.body.recentSessions.forEach(function(session){
+					// 	session.should.be.a("object");
+					// 	session.should.contain.all.keys(sessionKeys);
+					// 	session.game.should.be.a("string");
+					// 	session.players.should.be.a("array");
+					// 	session.players.should.have.length.of.at.least(2);
+					// 	session.winner.should.be.a("string");
+					// })
 				})
 		})
 	})
@@ -171,9 +175,9 @@ describe("Winrate API resource", function(){
 				.then(function(res){
 					console.log(res.body);
 					res.should.have.status(201);
-					res.body.should.be.json;
+					res.should.be.json;
 					res.body.game.should.equal(testSession.game);
-					res.body.players.should.equal(testSession.players);
+					res.body.players.should.eql(testSession.players);
 					res.body.winner.should.equal(testSession.winner);
 				})
 		})

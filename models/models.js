@@ -17,11 +17,12 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.dashboardInfo = function(){
 	return {
-		username: this.username,
-		myFirstName: this.name.firstName,
-		overallWinrate: this.overallWinrate,
-		recentPlayers: this.players.slice(-5).reverse(),
-		recentSessions: this.sessions.slice(-4).reverse(),
+		// username: this.username,
+		// myFirstName: this.name.firstName,
+		// overallWinrate: this.overallWinrate,
+		// recentPlayers: this.players.slice(-5).reverse(),
+		// recentSessions: this.sessions.slice(-4).reverse(),
+		recentSessions: this.sessions[0]._id
 	}
 }
 

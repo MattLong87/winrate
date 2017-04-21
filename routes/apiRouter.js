@@ -58,12 +58,12 @@ router.post("/users/:id/sessions", (req, res) => {
 	newSession.timeStamp = Date.now().toString();
 
 	console.log(newSession);
-	// User.findByIdAndUpdate(req.params.id, {$push: {sessions: newSession}}, {new:true})
-	// .exec()
-	// .then((user) => {
-	// 	//sends back the session that was just created
-	// 	res.status(201).json(user.sessions.reverse()[0]);
-	// 	})
+	User.findByIdAndUpdate(req.params.id, {$push: {sessions: newSession}}, {new:true})
+	.exec()
+	.then((user) => {
+		//sends back the session that was just created
+		res.status(201).json(user.sessions.reverse()[0]);
+		})
 })
 
 //Route to delete session with id :sessionId for user with :id

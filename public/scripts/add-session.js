@@ -68,7 +68,7 @@ $("#js-add-player").keypress(function(event){
 		$("#js-players-added").append("<span class = 'addedPlayer'>" + newPlayer + "</span>");
 		//add a hidden input with the player's name
 		//instead of these hidden inputs, could use our playersArray variable
-		var hiddenInput = "<input class = 'player " + newPlayer + "' type = 'text' value = " + newPlayer +" name = 'player'>";
+		var hiddenInput = "<input class = 'player " + newPlayer + "' type = 'text' value = " + newPlayer +" name = 'players'>";
 		$("#hidden-inputs").append(hiddenInput);
 		//clears out text box after entering
 		$("#players-input .typeahead").typeahead('val', '');
@@ -100,17 +100,38 @@ $("#js-add-session").on("submit", function(event){
 	// };
 	var newSession = $("#js-add-session").serialize();
 	console.log(newSession)
-	// $.ajax({
-	// 	url: "http://localhost:8080/api/users/" + data.id + "/sessions",
-	// 	method: "POST",
-	// 	dataType: "json",
- //        contentType: "application/json",
-	// 	data: newSession,
-	// 	success: function(data){
-	// 		sessionAddSuccess(data);
-	// 	}
-	// });
+	$.ajax({
+		url: "http://localhost:8080/api/users/" + data.id + "/sessions",
+		method: "POST",
+		dataType: "json",
+      contentType: "application/json",
+		data: JSON.stringify(toObject(newSession)),
+		success: function(data){
+			sessionAddSuccess(data);
+		}
+	});
 })
+
+function toObject(str){
+	str = decodeURIComponent(str);
+  var split = str.split("&");
+  var object = {}
+  split.forEach(function(keyValue){
+    var arr = keyValue.split("=");
+    if (object[arr[0]] !== undefined){
+      if (object[arr[0]] instanceof Array){
+        object[arr[0]].push(arr[1])
+      }
+      else {
+        object[arr[0]] = [object[arr[0]],arr[1]];
+      }
+    }
+    else{
+      object[arr[0]] = arr[1];
+    }
+  })
+  return object;
+}
 
 function sessionAddSuccess(data){
 	$(".js-game").html(data.game);

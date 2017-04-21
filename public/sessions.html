@@ -13,7 +13,7 @@
 	<ol class = "js-sessions">
 		<script type="text/x-handlebars-template" id="sessions">
 		{{#each sessions}}
-			<li>{{game}} Players: {{players}} Winner: {{winner}} {{timeStampFormatted}}<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session">delete session</a></li>
+			<li>{{game}} Players: {{players}} Winner: {{winner}} {{timeStampFormatted}}<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session" data-id = "{{_id}}">delete session</a></li>
 		{{/each}}
 		</script>
 	</ol>

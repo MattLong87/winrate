@@ -31,13 +31,15 @@ function getAndDisplaySessions(){
 
 $("body").on("click", ".js-delete-session", function(e){
 	e.preventDefault();
-	// $.ajax({
-	// 	url: "http://localhost:8080/api/users/" + id + "/sessions/" + ???,
-	// 	method: "DELETE",
-	// 	success: function(){
-	// 		$(this).parent().remove();
-	// 	}
-	// });
+	var sessionId = $(this).attr("data-id");
+	var self = this;
+	$.ajax({
+		url: "http://localhost:8080/api/users/" + id + "/sessions/" + sessionId,
+		method: "DELETE",
+		success: function(){
+			$(self).parent().remove();
+		}
+	});
 })
 
 getAndDisplaySessions();
