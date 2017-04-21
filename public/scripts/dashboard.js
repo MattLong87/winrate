@@ -15,7 +15,8 @@ function displayDashboardInfo(data){
 	$(".js-winrate").html(Math.round(data.overallWinrate * 100));
 	//Populate recent players list
 	data.recentPlayers.forEach(function(player){
-		var li = "<li>" + player + "</li>";
+		var playerWinrate = Math.floor(player[1]*100)
+		var li = "<li>" + player[0] + " " + playerWinrate + "%</li>";
 		$(".js-recent-players").append(li);
 	});
 	//Populate recent sessions list using Handlebars
