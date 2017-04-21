@@ -6,7 +6,18 @@ main {
 h1 {
   font-size: 46pt;
   text-align: center;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+}
+
+.dashboard-header{
+  background-color: #0076B2;
+  color: white;
+}
+
+.header{
+  color: #0076B2;
+  display: inline-block;
+}
 
 .overall-winrate {
   text-align: center;
@@ -15,11 +26,26 @@ h1 {
 h2, h3 {
   font-size: 30pt;
   letter-spacing: 2px;
+  margin-bottom: 10px;
 }
 
-.winrate-percent {
-  font-size: 40pt;
+.winrate-percent-circle {
+  font-size: 50pt;
   display: inline-block;
+  border: 9px solid #00A8FF;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  text-align: center;
+}
+
+.winrate-percent{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 ul {

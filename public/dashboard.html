@@ -16,27 +16,32 @@
 <div class = "container">
 	<div class = "row">
 		<div class = "12 columns">
-			<h1><span class = "js-username"></span> Dashboard</h1>
+			<h1 class = "dashboard-header"><span class = "js-username"></span> Dashboard</h1>
 		</div>
 	</div>
 	<div class = "row">
 		<div class = "seven columns">
 			<div class = "recent-players">
-				<h3>Recent Players</h3>
+				<h3 class = "header">Recent Players</h3>
 				<ul class = "js-recent-players">
 				</ul>
 			</div>
 		</div>
 		<div class = "five columns">
 			<div class = "overall-winrate">
-				<h2>Overall WinRate: </h2><div class = "winrate-percent"><span class = "js-winrate"></span>%</div>
+				<h2 class = "header">Overall WinRate: </h2>
+				<div class = "winrate-percent-circle">
+					<div class = "winrate-percent">
+						<span class = "js-winrate"></span>%
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class = "row">
 		<div class = "8 columns">
 			<div class = "recent-sessions">
-				<h3>Recent Sessions</h3>
+				<h3 class = "header">Recent Sessions</h3>
 				<ul class = "js-recent-sessions">
 					<script type="text/x-handlebars-template" id="recent-sessions">
 					{{#each sessions}}
