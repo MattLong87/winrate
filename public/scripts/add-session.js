@@ -61,19 +61,29 @@ $("#js-add-session").on("keyup keypress", function(e){
 //Event listener when pressing enter on player input
 $("#js-add-player").keypress(function(event){
 	if (event.which === 13){
-		//have to use this .tt-input class, apparent bug in typeahead
-		var newPlayer = $("#players-input .tt-input").typeahead("val");
-		playersArray.push(newPlayer);
-		updateWinners();
-		$("#js-players-added").append("<span class = 'addedPlayer'>" + newPlayer + "</span>");
-		//add a hidden input with the player's name
-		//instead of these hidden inputs, could use our playersArray variable
-		var hiddenInput = "<input class = 'player " + newPlayer + "' type = 'text' value = " + newPlayer +" name = 'players'>";
-		$("#hidden-inputs").append(hiddenInput);
-		//clears out text box after entering
-		$("#players-input .typeahead").typeahead('val', '');
+		playerEntered();
 	}
 })
+
+//Event listener for clicking on tyepahead player name
+$("#players-input").on("click", ".tt-selectable", function(event){
+	playerEntered();
+})
+
+//playerEntered() is called when user presses enter on player input or
+//selects an entry in player typeahead
+function playerEntered(){
+	var newPlayer = $("#players-input .tt-input").typeahead("val");
+	playersArray.push(newPlayer);
+	updateWinners();
+	$("#js-players-added").append("<span class = 'addedPlayer'>" + newPlayer + "</span>");
+	//add a hidden input with the player's name
+	//instead of these hidden inputs, could use our playersArray variable
+	var hiddenInput = "<input class = 'player " + newPlayer + "' type = 'text' value = " + newPlayer +" name = 'players'>";
+	$("#hidden-inputs").append(hiddenInput);
+	//clears out text box after entering
+	$("#players-input .typeahead").typeahead('val', '');
+}
 
 //Event listener (with delegation) for clicking player added to remove
 $("#js-players-added").on("click", ".addedPlayer", function(event){
@@ -93,11 +103,6 @@ $("#js-players-added").on("click", ".addedPlayer", function(event){
 //Event listener for form submission
 $("#js-add-session").on("submit", function(event){
 	event.preventDefault();
-	// var newSession = {
-	// 	game: $("#game").val(),
-	// 	players: playersArray,
-	// 	winner: $("#winner").val()
-	// };
 	var newSession = $("#js-add-session").serialize();
 	console.log(newSession)
 	$.ajax({

@@ -6,8 +6,9 @@
 	display: none;
 }
 
-body{
-	text-align: center
+main{
+	text-align: center;
+	margin-top: 50px;
 }
 
 .game-name{
@@ -16,4 +17,23 @@ body{
 
 .players-input{
 	margin-bottom: 100px;
+}
+
+.tt-menu{
+	background-color: white;
+}
+
+.tt-menu:hover{
+	cursor: pointer;
+}
+
+.tt-selectable:hover{
+	background-color: #00A8FF;
+	color: white;
+}
+
+input, .tt-menu{
+	width: 300px;
+	height: 250px;
+	font-size: 18pt;
 }
