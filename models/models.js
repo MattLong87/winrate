@@ -6,7 +6,6 @@ const userSchema = mongoose.Schema({
 		firstName: {type: String, required: true},
 		lastName: {type: String, required: true}
 	},
-	players: [String],
 	sessions: [{
 		game: {type: String},
 		players: [String],
@@ -16,7 +15,7 @@ const userSchema = mongoose.Schema({
 })
 
 userSchema.methods.dashboardInfo = function(){
-	var players = this.players.slice(-5).reverse();
+	var players = this.allPlayers.slice(-5).reverse();
 	var self = this;
 	//calculates the winrate for each player and returns array with
 	//[playerName, winrate]
@@ -37,7 +36,6 @@ userSchema.methods.dashboardInfo = function(){
 		username: this.username,
 		myFirstName: this.name.firstName,
 		overallWinrate: this.overallWinrate,
-		//recentPlayers: this.players.slice(-5).reverse(),
 		recentPlayers: playersWithWinrates,
 		recentSessions: this.sessions.slice(-4).reverse(),
 	}
@@ -70,6 +68,20 @@ userSchema.virtual("overallWinrate").get(function(){
 		}
 	})
 	return gamesWon / this.sessions.length;
+})
+
+//returns array of all players user has had sessions with
+//from oldest to newest
+userSchema.virtual("allPlayers").get(function(){
+	let allPlayers = [];
+	this.sessions.forEach(function(session){
+		session.players.forEach(function(player){
+			if (recentPlayers.indexOf(player) == -1){
+				recentPlayers.push(player);
+			}
+		})
+	})
+	return allPlayers;
 })
 
 //User.allGames returns an array of all game names

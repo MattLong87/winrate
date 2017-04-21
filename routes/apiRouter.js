@@ -4,19 +4,6 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-//built our own jsonParser
-// const jsonParser = function(req, res, next){
-// 	var body = [];
-// 	req.on("data", function(chunk){
-// 		body.push(chunk);
-// 		console.log(chunk);
-// 	}).on("end", function(){
-// 		var something = Buffer.concat(body).toString();
-// 		req.body = JSON.parse(something || "{}");
-// 		next();
-// 	})
-// }
-
 const {User, userSchema} = require('../models/models.js');
 
 router.use(jsonParser);
