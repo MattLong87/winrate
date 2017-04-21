@@ -16,11 +16,29 @@ const userSchema = mongoose.Schema({
 })
 
 userSchema.methods.dashboardInfo = function(){
+	var players = this.players.slice(-5).reverse();
+	var self = this;
+	//calculates the winrate for each player and returns array with
+	//[playerName, winrate]
+	var playersWithWinrates = players.map(function(player){
+		var gamesPlayed = 0;
+		gamesWon = 0;
+		self.sessions.forEach(function(session){
+			if (session.players.indexOf(player) !== -1){
+				gamesPlayed++;
+				if (session.winner == player){
+					gamesWon++;
+				}
+			}
+		})
+		return [player, gamesWon/gamesPlayed];
+	})
 	return {
 		username: this.username,
 		myFirstName: this.name.firstName,
 		overallWinrate: this.overallWinrate,
-		recentPlayers: this.players.slice(-5).reverse(),
+		//recentPlayers: this.players.slice(-5).reverse(),
+		recentPlayers: playersWithWinrates,
 		recentSessions: this.sessions.slice(-4).reverse(),
 	}
 }

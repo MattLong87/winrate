@@ -34,7 +34,7 @@ function choosePlayers(numPlayers, playerNames){
 function seedUser(){
 	const userFirstName = faker.name.firstName();
 	var playerHistory = [];
-	for(let i = 1; i <= 20; i++){
+	for(let i = 1; i <= 10; i++){
 		playerHistory.push(faker.name.firstName());
 	}
 	var fakeUser = {
@@ -44,7 +44,7 @@ function seedUser(){
 			lastName: faker.name.lastName(),
 		},
 		players: playerHistory,
-		sessions: generateSessions(20, userFirstName, playerHistory)
+		sessions: generateSessions(30, userFirstName, playerHistory)
 	}
 	return User.create(fakeUser);
 }
