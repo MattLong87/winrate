@@ -22,7 +22,11 @@ function displayDashboardInfo(data){
 	//Populate recent sessions list using Handlebars
 	var src = $("#recent-sessions").html()
 	var template = Handlebars.compile(src);
-	var lis = template({sessions: data.recentSessions});
+	var sessions = data.recentSessions.map((session) => {
+		session.players = session.players.join(", ");
+		return session;
+	})
+	var lis = template({sessions});
 	$(".js-recent-sessions").append(lis);
 }
 

@@ -21,7 +21,7 @@ userSchema.methods.dashboardInfo = function(){
 	//[playerName, winrate]
 	var playersWithWinrates = players.map(function(player){
 		var gamesPlayed = 0;
-		gamesWon = 0;
+		var gamesWon = 0;
 		self.sessions.forEach(function(session){
 			if (session.players.indexOf(player) !== -1){
 				gamesPlayed++;
@@ -76,8 +76,8 @@ userSchema.virtual("allPlayers").get(function(){
 	let allPlayers = [];
 	this.sessions.forEach(function(session){
 		session.players.forEach(function(player){
-			if (recentPlayers.indexOf(player) == -1){
-				recentPlayers.push(player);
+			if (allPlayers.indexOf(player) == -1){
+				allPlayers.push(player);
 			}
 		})
 	})
