@@ -2,6 +2,11 @@ main{
 	max-width: 800px;
 	margin: 50px auto;
 	/*border: 1px solid black;*/
+	color: white;
+}
+
+body{
+	background-color: #0076B2;
 }
 
 h1{
