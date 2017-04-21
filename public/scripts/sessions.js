@@ -1,6 +1,6 @@
 function getSessions(callback) {
 	let settings = {
-		url: "http://localhost:8080/api/allSessions",
+		url: "./api/allSessions",
 		dataType: "json",
 		method: "GET",
 		success: function(data) {callback(data)}

@@ -1,6 +1,6 @@
 function getDashboardInfo(callback) {
 	let settings = {
-		url: "http://localhost:8080/api/dashboardInfo",
+		url: "./api/dashboardInfo",
 		dataType: "json",
 		method: "GET",
 		success: function(data) {callback(data)}
