@@ -4,6 +4,7 @@
 
 body{
 	font-family: 'Open Sans', sans-serif;
+	line-height: 1.5;
 }
 
 header{
@@ -13,4 +14,24 @@ header{
 .header-logo{
 	height: 100px;
 	margin: 5px 0px 5px 30px
+}
+
+h1{
+	font-size: 46pt;
+  	text-align: center;
+	background-color: #0076B2;
+	color: white;
+	margin-top: 50px;
+}
+
+nav button{
+	color: black;
+	background-color: white;
+	border-color: black;
+}
+
+nav button:hover{
+	background-color: #0076B2;
+	color: white;
+	transition: background-color .2s, color .2s;
 }

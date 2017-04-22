@@ -2,14 +2,27 @@
 <html>
 <head>
 	<title>WinRate - My Sessions</title>
-	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="./css/winrate.css">
+	<link rel="stylesheet" type="text/css" href="./css/sessions.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
-
+<header>
+<img src = "./images/winrate-logo.png" class = "header-logo" alt = "WinRate">
+</header>
 <main>
-	<h1><span class = "js-username"></span> Sessions</h1>
-	<a href = "/dashboard.html">Dashboard</a>
-	<a href = "/add-session.html">Add a Session</a>
+<div class = "container">
+	<div class = "row">
+		<h1><span class = "js-username"></span> Sessions</h1>
+	</div>
+	<div class = "row">
+		<nav>
+			<a href = "/dashboard.html"><button>Dashboard</button></a>
+			<a href = "/add-session.html"><button>Add a Session</button></a>
+		</nav>
+	</div>
 	<ol class = "js-sessions">
 		<script type="text/x-handlebars-template" id="sessions">
 		{{#each sessions}}
@@ -17,6 +30,7 @@
 		{{/each}}
 		</script>
 	</ol>
+</div>
 </main>
 
 
