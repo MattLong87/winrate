@@ -2,40 +2,51 @@
 <html>
 <head>
 	<title>WinRate - Add a Session</title>
-	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="./css/winrate.css">
+	<link rel="stylesheet" type="text/css" href="./css/add-session.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<meta name="viewport" content="width=device-width">
 </head>
 <body>
+<header>
+	<a href = "./dashboard.html"><img src = "./images/winrate-logo.png" class = "header-logo" alt = "WinRate"></a>
+</header>
+<main>
 	<h1>Add a Session</h1>
-	<form>
-		<label for="game">Game:</label>
-		<select name="game" id="game">
-			<script type="text/x-handlebars-template" id="games">
-				{{#each games}}
-					<option>{{this}}</option>
-				{{/each}}
-			</script>
-		</select>
+	<form id = "js-add-session">
+		<div class = "game-name">
+			<label for="game">Game:</label>
+			<input class = "typeahead" id = "js-select-game" type = "text" name = "game" placeholder = "Game Name">
+		</div>
+		<div class = "players-input">
 		<section id="players-input">
-			<label for="players">Players:</label>
-			<select name="players" id="player1" class="players-dropdown">
-				<script type="text/x-handlebars-template" id="players">
-					{{#each players}}
-						<option>{{this}}</option>
-					{{/each}}
-				</script>
+				<label for="players">Players:</label>
+				<input class = "typeahead" id = "js-add-player" type = "text" placeholder = "Add a Player">
+				<section id = "js-players-added" class = "players-added"></section>
+			</section>
+		</div>
+		<section id = "hidden-inputs"></section>
+		<div class = "winner-selection">
+			<label for="winner">Winner:</label>
+			<select name="winner" id="winner">
 			</select>
-			<button id="js-add-player">Add a Player</button>
-		</section>
-		<label for="winner">Winner:</label>
-		<select name="winner" id="winner">
-		</select>
-
-		<button type="submit">Submit</button>
-		<button type="reset">Reset</button>
+			</div>
+		<button type="submit" id="submit">Submit</button>
 	</form>
+	<section class = "js-session-added">
+		<span class = "js-game"></span>
+		<span class = "js-players"></span>
+		<span class = "js-winner"></span>
+	</section>
 
-
+<a href = "./dashboard.html"><button class = "nav-button dashboard">Dashboard</button></a>
+<a href = "./sessions.html"><button class = "nav-button all-sessions">All Sessions</button></a>
+</main>
 <script type="text/javascript" src="./scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./scripts/addOption.jquery.js"></script>
+<script type="text/javascript" src="./scripts/typeahead.jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
 <script type="text/javascript" src="./scripts/add-session.js"></script>
 </body>

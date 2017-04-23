@@ -1,32 +1,32 @@
-var MOCK_DASHBOARD_DATA = {
-	"username": "MattLong87",
-	"myFirstName": "Matthew",
-	"overallWinrate": 36,
-	"recentPlayers": ["Jon", "Jay", "Carrie", "Kyle"],
-	"recentSessions": generateSessions(3)
-}
-
 function getDashboardInfo(callback) {
-	setTimeout(function(){
-		callback(MOCK_DASHBOARD_DATA)}, 100);
+	let settings = {
+		url: "/api/dashboardInfo",
+		dataType: "json",
+		method: "GET",
+		success: function(data) {callback(data)}
+	}
+	$.ajax(settings);
 };
-
-//Below this line should work with real API data
 
 function displayDashboardInfo(data){
 	//Dashboard displays username
 	$(".js-username").html(data.username + "'s");
 	//User's overall winrate
-	$(".js-winrate").html(data.overallWinrate);
+	$(".js-winrate").html(Math.round(data.overallWinrate * 100));
 	//Populate recent players list
 	data.recentPlayers.forEach(function(player){
-		var li = "<li>" + player + "</li>";
+		var playerWinrate = Math.floor(player[1]*100)
+		var li = "<li>" + player[0] + " " + playerWinrate + "%</li>";
 		$(".js-recent-players").append(li);
 	});
 	//Populate recent sessions list using Handlebars
 	var src = $("#recent-sessions").html()
 	var template = Handlebars.compile(src);
-	var lis = template({sessions: data.recentSessions});
+	var sessions = data.recentSessions.map((session) => {
+		session.players = session.players.join(", ");
+		return session;
+	})
+	var lis = template({sessions});
 	$(".js-recent-sessions").append(lis);
 }
 

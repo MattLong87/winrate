@@ -1,0 +1,70 @@
+main {
+  margin: 50px auto;
+  line-height: 1.5; }
+
+h1 {
+  font-size: 46pt;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.dashboard-header{
+  background-color: #0076B2;
+  color: white;
+}
+
+.header{
+  color: #0076B2;
+  display: inline-block;
+}
+
+.overall-winrate {
+  text-align: center;
+}
+
+h2, h3 {
+  font-size: 30pt;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.winrate-percent-circle {
+  font-size: 50pt;
+  display: inline-block;
+  border: 9px solid #00A8FF;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  text-align: center;
+}
+
+.winrate-percent{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 30px;
+  list-style: disc;
+  font-size: 20pt;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.recent-sessions {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.game{
+  font-size: 24pt;
+  display: inline-block;
+  width: 100%;
+}

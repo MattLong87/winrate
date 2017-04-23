@@ -1,0 +1,87 @@
+*{
+	box-sizing: border-box;
+}
+
+#hidden-inputs{
+	display: none;
+}
+
+main{
+	text-align: center;
+	margin-top: 50px;
+}
+
+h1{
+	font-weight: 600;
+}
+
+label{
+	font-size: 22pt;
+}
+
+.game-name{
+	margin-bottom: 100px;
+}
+
+.players-input{
+	margin-bottom: 100px;
+}
+
+.tt-menu{
+	background-color: white;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+}
+
+.tt-menu:hover{
+	cursor: pointer;
+}
+
+.tt-selectable:hover{
+	background-color: #00A8FF;
+	color: white;
+}
+
+input, .tt-menu, #winner{
+	width: 300px;
+	font-size: 18pt;
+}
+
+input{
+	margin-bottom: 0px;
+}
+
+.players-added{
+	margin-top: 15px;
+}
+
+.addedPlayer{
+	font-size: 16pt;
+	color: white;
+	background-color: #00A8FF;
+	padding: 5px 15px;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+
+.addedPlayer:hover{
+	cursor: pointer;
+	background-color: #ce5d50;
+	transition: background-color .2s;
+}
+
+#submit{
+	margin-top: 50px;
+	width: 300px;
+	font-size: 12pt;
+}
+
+#submit:hover{
+	background-color: #00A8FF;
+	color:white;
+	transition: background-color .2s, color .2s;
+}
+
+.nav-button{
+	
+}

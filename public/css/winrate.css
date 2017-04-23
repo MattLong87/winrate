@@ -1,0 +1,16 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
+header{
+	background-color: #ffb922;
+}
+
+.header-logo{
+	height: 100px;
+	margin: 5px 0px 5px 30px
+}
