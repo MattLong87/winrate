@@ -11,6 +11,11 @@ header{
 	background-color: #ffb922;
 }
 
+nav{
+	text-align: center;
+	margin-bottom: 60px;
+}
+
 .header-logo{
 	height: 100px;
 	margin: 5px 0px 5px 30px
@@ -22,6 +27,7 @@ h1{
 	background-color: #0076B2;
 	color: white;
 	margin-top: 50px;
+	margin-bottom: 40px;
 	padding: 5px 0;
 }
 
