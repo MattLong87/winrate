@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/winrate.css">
 	<link rel="stylesheet" type="text/css" href="./css/dashboard.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<meta name="viewport" content="width=device-width">
 </head>
 <body>
 <header>
@@ -18,6 +19,12 @@
 		<div class = "12 columns">
 			<h1 class = "dashboard-header"><span class = "js-username"></span> Dashboard</h1>
 		</div>
+	</div>
+	<div class = "row">
+		<nav>
+			<a href = "/sessions.html"><button>All Sessions</button></a>
+			<a href = "/add-session.html"><button>Add a Session</button></a>
+		</nav>
 	</div>
 	<div class = "row">
 		<div class = "seven columns">
@@ -39,7 +46,7 @@
 		</div>
 	</div>
 	<div class = "row">
-		<div class = "8 columns">
+		<div class = "twelve columns">
 			<div class = "recent-sessions">
 				<h3 class = "header">Recent Sessions</h3>
 				<ul class = "js-recent-sessions">
@@ -52,7 +59,6 @@
 					{{/each}}
 					</script>
 				</ul>
-				<a href = "./sessions.html">View all sessions</a>
 			</div>
 		</div>
 	</div>

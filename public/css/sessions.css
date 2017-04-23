@@ -1,0 +1,29 @@
+ul{
+	list-style: none;  
+	font-size: 18pt;
+}
+
+li{
+	margin-bottom: 45px;
+}
+
+.game{
+  font-size: 24pt;
+  display: inline-block;
+  width: 100%;
+  background-color: #597887;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.session-key{
+	font-weight: 600;
+}
+
+.delete:hover{
+	background-color: #ce5d50;
+	color: white;
+	transition: background-color .2s, color .2s;
+}

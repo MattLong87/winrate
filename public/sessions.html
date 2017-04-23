@@ -2,21 +2,50 @@
 <html>
 <head>
 	<title>WinRate - My Sessions</title>
-	<link rel="stylesheet" type="text/css" href="./css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="./css/winrate.css">
+	<link rel="stylesheet" type="text/css" href="./css/sessions.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<meta name="viewport" content="width=device-width">
 </head>
 <body>
-
+<header>
+	<a href = "./dashboard.html"><img src = "./images/winrate-logo.png" class = "header-logo" alt = "WinRate"></a>
+</header>
 <main>
-	<h1><span class = "js-username"></span> Sessions</h1>
-	<a href = "/dashboard.html">Dashboard</a>
-	<a href = "/add-session.html">Add a Session</a>
-	<ol class = "js-sessions">
+<div class = "container">
+	<div class = "row">
+		<h1><span class = "js-username"></span> Sessions</h1>
+	</div>
+	<div class = "row">
+		<nav>
+			<a href = "/dashboard.html"><button>Dashboard</button></a>
+			<a href = "/add-session.html"><button>Add a Session</button></a>
+		</nav>
+	</div>
+	<ul class = "js-sessions">
 		<script type="text/x-handlebars-template" id="sessions">
 		{{#each sessions}}
-			<li>{{game}} Players: {{players}} Winner: {{winner}} {{timeStampFormatted}}<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session" data-id = "{{_id}}">delete session</a></li>
+			<li>
+				<div class="game">{{game}}</div>
+				<div class = "row">
+					<div class = "six columns">
+						<div class = "players"><span class = "session-key">Players:</span> {{players}}</div>
+						<div class = "winner"><span class = "session-key">Winner:</span> {{winner}}</div>
+					</div>
+					<div class = "six columns">
+						<div class = "date">{{timeStampFormatted}}</div>
+						<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session" data-id = "{{_id}}">
+							<button class =  "delete">delete session</button>
+						</a>
+					</div>
+				</div>
+			</li>
 		{{/each}}
 		</script>
-	</ol>
+	</ul>
+</div>
 </main>
 
 
