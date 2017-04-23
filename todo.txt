@@ -1,0 +1,7 @@
+test for patch endpoint
+
+patch route to delete a single session?
+how will I ID that particular session?
+store ID in html?
+
+delete route (delete user, i guess)	
