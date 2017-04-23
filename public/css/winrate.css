@@ -22,12 +22,16 @@ h1{
 	background-color: #0076B2;
 	color: white;
 	margin-top: 50px;
+	padding: 5px 0;
 }
 
 nav button{
 	color: black;
 	background-color: white;
 	border-color: black;
+	width: 200px;
+	height: 50px;
+	font-size: 12pt;
 }
 
 nav button:hover{

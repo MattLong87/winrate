@@ -23,13 +23,27 @@
 			<a href = "/add-session.html"><button>Add a Session</button></a>
 		</nav>
 	</div>
-	<ol class = "js-sessions">
+	<ul class = "js-sessions">
 		<script type="text/x-handlebars-template" id="sessions">
 		{{#each sessions}}
-			<li>{{game}} Players: {{players}} Winner: {{winner}} {{timeStampFormatted}}<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session" data-id = "{{_id}}">delete session</a></li>
+			<li>
+				<div class="game">{{game}}</div>
+				<div class = "row">
+					<div class = "six columns">
+						<div class = "players"><span class = "session-key">Players:</span> {{players}}</div>
+						<div class = "winner"><span class = "session-key">Winner:</span> {{winner}}</div>
+					</div>
+					<div class = "six columns">
+						<div class = "date">{{timeStampFormatted}}</div>
+						<a href="/sessions.html#/sessions/{{_id}}" class = "js-delete-session" data-id = "{{_id}}">
+							<button class =  "delete">delete session</button>
+						</a>
+					</div>
+				</div>
+			</li>
 		{{/each}}
 		</script>
-	</ol>
+	</ul>
 </div>
 </main>
 
